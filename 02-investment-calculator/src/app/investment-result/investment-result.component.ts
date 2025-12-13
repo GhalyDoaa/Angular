@@ -1,6 +1,6 @@
 import { Component, input, Input } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-
+import { InvestmentService } from '../investment.service';
 @Component({
   selector: 'app-investment-result',
   standalone: true,
@@ -18,12 +18,17 @@ export class InvestmentResultComponent {
 //           totalAmountInvested: number,
 //         }[];
 
-result =input<{
-          year: number,
-          interest: number,
-          valueEndOfYear: number,
-          annualInvestment: number,
-          totalInterest: number,
-          totalAmountInvested: number,
-        }[]|undefined>();
+// result =input<{
+//           year: number,
+//           interest: number,
+//           valueEndOfYear: number,
+//           annualInvestment: number,
+//           totalInterest: number,
+//           totalAmountInvested: number,
+//         }[]|undefined>();
+  constructor(private investmentService :InvestmentService) {}
+
+   get result(){
+    return this.investmentService.resultData.asReadonly();
+  }
 }
